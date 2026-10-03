@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多智能体浏览器协同</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🤖 多 AI 协同</h1>
+    <div id="agent-bar" aria-label="AI 在线状态"></div>
+  </header>
+
+  <main id="messages" aria-label="消息流"></main>
+
+  <footer>
+    <div id="mention-popup" hidden></div>
+    <textarea id="prompt" rows="3" placeholder="输入问题… @名字 只发给TA，不加@则群发（Ctrl+Enter 发送）"></textarea>
+    <div class="hint">输入 @ 选择 AI 单独发送；点击顶部名字可改名</div>
+    <div class="actions">
+      <button id="send">群发</button>
+      <button id="stop" class="danger">停止</button>
+    </div>
+  </footer>
+
+  <script src="panel.js"></script>
+</body>
+</html>

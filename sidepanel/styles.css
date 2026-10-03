@@ -1,0 +1,256 @@
+/* 多智能体侧边栏样式：紧凑、耐看，不过度设计 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  color: #1f2937;
+  background: #f9fafb;
+}
+
+/* ---- 顶部 ---- */
+header {
+  padding: 10px 12px 8px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+header h1 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+#agent-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.agent-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #9ca3af;
+  font-size: 12px;
+  cursor: pointer; /* 点击可改名 */
+  user-select: none;
+}
+
+.agent-pill:hover {
+  filter: brightness(0.95);
+}
+
+.agent-pill .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+}
+
+.agent-pill.online {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.agent-pill.online .dot {
+  background: #10b981;
+}
+
+/* ---- 消息流 ---- */
+#messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.msg .avatar {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msg .bubble {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.msg .agent-name {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.msg .text {
+  white-space: pre-wrap; /* 纯文本保留换行 */
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+/* 我发出的消息：右对齐 */
+.msg.me {
+  justify-content: flex-end;
+}
+
+.msg.me .bubble {
+  background: #1a73e8;
+  border-color: #1a73e8;
+  color: #fff;
+}
+
+/* 等待中 */
+.msg.status .bubble {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* 出错 */
+.msg.error .bubble {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* 系统提示：居中 */
+.msg.system {
+  justify-content: center;
+}
+
+.msg.system .bubble {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #92400e;
+  font-size: 12px;
+}
+
+/* ---- 底部输入区 ---- */
+footer {
+  position: relative; /* @ 补全弹窗的定位基准 */
+  padding: 10px 12px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.hint {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+/* @ 补全弹窗：浮在输入区上方 */
+#mention-popup {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 100%;
+  margin-bottom: 4px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 4px;
+  z-index: 10;
+}
+
+#mention-popup[hidden] {
+  display: none;
+}
+
+.mention-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mention-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.mention-item.active {
+  background: #eff6ff;
+}
+
+#prompt {
+  width: 100%;
+  resize: vertical;
+  min-height: 56px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+#prompt:focus {
+  border-color: #1a73e8;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #1a73e8;
+  color: #fff;
+}
+
+.actions button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+.actions button.danger {
+  flex: 0 0 84px;
+  background: #f3f4f6;
+  color: #374151;
+}
